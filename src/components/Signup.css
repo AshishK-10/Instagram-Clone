@@ -1,0 +1,36 @@
+.SignupWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+
+.SignupCard{
+  margin-top: 2%;
+  width: 35vw;
+}
+
+
+.instaTextPic{
+  width: fit-content;
+  height: 7vh;
+  justify-content: center;
+}
+
+.insta-logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.logo-subtitle{
+  color: grey;
+  text-align: center;
+  font-size: smaller;
+}
+
+.footerLine{
+  color: grey;
+  text-align: center;
+}
