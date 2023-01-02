@@ -34,3 +34,12 @@
   color: grey;
   text-align: center;
 }
+
+@media only screen and (max-width: 620px){
+  .SignupCard{
+    width: 60%;
+  }
+  .instaTextPic{
+    width: 35%;
+  }
+}

@@ -1,0 +1,67 @@
+.loginWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+
+.loginCard{
+  margin-top: 8%;
+  width: 35vw;
+}
+
+
+.instaTextPic{
+  width: fit-content;
+  height: 9vh;
+  justify-content: center;
+}
+
+.insta-logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.logo-subtitle{
+  color: grey;
+  text-align: center;
+  font-size: smaller;
+}
+
+.footerLine{
+  color: grey;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px){
+  .loginCard{
+    width: 60%;
+  }
+  .instaTextPic{
+    width: 35%;
+  }
+}
+
+.imgcar{
+  background-image: url(../assets/phone_image.png);
+  background-size: cover;
+  margin-top: 4vh;
+  height: 560px;
+  width: 380px;
+  position: relative;
+}
+
+.car{
+  position: absolute;
+  width: 226px;
+  left: 124px;
+  top: 192px;
+}
+
+@media only screen and (max-width: 730px){
+  .imgcar{
+    display: none;
+  }
+}

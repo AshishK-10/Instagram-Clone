@@ -14,7 +14,7 @@ import './Signup.css'
 import instaLogo from '../assets/instagramText.jpg'
 import {Link} from 'react-router-dom'
 
-export default function Login() {
+export default function SignUp() {
   return (
     <div className='SignupWrapper'>
       <div className='SignupCard'>
