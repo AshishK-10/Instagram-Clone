@@ -5,10 +5,12 @@
 
 
 .SignupCard{
-  margin-top: 2%;
-  width: 35vw;
+  margin-top: 4%;
 }
 
+.login-card{
+ width: 38vw;
+}
 
 .instaTextPic{
   width: fit-content;
@@ -37,9 +39,9 @@
 
 @media only screen and (max-width: 620px){
   .SignupCard{
-    width: 60%;
+    width: 40%;
   }
   .instaTextPic{
-    width: 35%;
+    width: 80%;
   }
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -20,8 +20,11 @@ import img_3 from '../assets/pic_3.jpg'
 import img_4 from '../assets/pic_4.jpg'
 import img_5 from '../assets/pic_5.jpg'
 import {Link} from 'react-router-dom'
+import  {AuthContext} from '../Context/authContext';
 
 export default function Login() {
+  let stores = useContext(AuthContext);
+  console.log(stores)
   return (
     <div className='loginWrapper'>
       <div className='imgcar'>
