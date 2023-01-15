@@ -19,12 +19,38 @@ import img_2 from '../assets/pic_2.jpg'
 import img_3 from '../assets/pic_3.jpg'
 import img_4 from '../assets/pic_4.jpg'
 import img_5 from '../assets/pic_5.jpg'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import  {AuthContext} from '../Context/authContext';
+import { ErrorOutline } from '@mui/icons-material';
 
 export default function Login() {
-  let stores = useContext(AuthContext);
-  console.log(stores)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const {login} = useContext(AuthContext);
+
+  const handleLogin = async () =>{
+    try{
+      setError('');
+      setLoading(true);
+      let res = await login(email, password)
+      setLoading(false);
+      navigate('/')
+    }catch(e){
+      setError(e.message);
+      setTimeout(()=>{
+        setError(''); //remove errors after 2 secs.
+      },3000)
+      setLoading(false);
+    }
+  }
+
+  const handleForgetPassword = ()=>{
+    console.log("clicked")
+  }
+
   return (
     <div className='loginWrapper'>
       <div className='imgcar'>
@@ -58,15 +84,17 @@ export default function Login() {
             <Typography className='logo-subtitle' variant="subtitle1">
               SignUp to see photos and videos from your friends
             </Typography>
-            {true && <Alert severity="error">This is an error alert — check it out!</Alert>}
-            <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth= {true} margin = "dense" size = "small"/>
-            <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth= {true} margin = "dense" size = "small"/>
-            <Typography color = "primary" variant="subtitle1" style={{textAlign: "center"}}>
-              Forget Password ?
+            {error != '' && <Alert severity="error">{error}</Alert>}
+            <TextField type = "email" id="outlined-basic email" label="Email" variant="outlined" fullWidth= {true} margin = "dense" size = "small"
+              value = {email} onChange = {(e)=>{setEmail(e.target.value)}}/>
+            <TextField type = "password" id="outlined-basic password" label="Password" variant="outlined" fullWidth= {true} margin = "dense" size = "small" 
+              value = {password} onChange = {(e)=>{setPassword(e.target.value)}}/>
+            <Typography color = "primary" variant="subtitle1" style={{textAlign: "center", cursor :"pointer"}}>
+              <Link to = "/forgetPassword" style={{textDecoration:"none"}}>Forget Password ?</Link>
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color ="primary" fullWidth= {true} variant = "contained">
+            <Button color ="primary" fullWidth= {true} variant = "contained" onClick={handleLogin} disabled = {loading}>
               LOG IN
             </Button>
           </CardActions>

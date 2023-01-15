@@ -3,7 +3,7 @@ import {auth} from '../firebase';
 export const AuthContext = React.createContext();
 
 export function AuthProvider({children}){
-  const [user, setUser] = useState();
+  const [user, setUser] = useState('');
   const [loading, setLoading] = useState(true);
 
   function signup(user, password){
@@ -18,8 +18,12 @@ export function AuthProvider({children}){
     return auth.signOut();
   }
 
+  function forgetPassword(email){
+    return auth.sendPasswordResetEmail(email);
+  }
+
   useEffect(()=>{
-    const unsub = auth.onAuthStateChanged(()=>{
+    const unsub = auth.onAuthStateChanged((user)=>{
       setUser(user);
       setLoading(false);
     })
@@ -28,7 +32,7 @@ export function AuthProvider({children}){
     }
   }, [])
 
-  const store = {user, signup, login, logout}
+  const store = {user, signup, login, logout, forgetPassword}
   return (
     <AuthContext.Provider value = {store}>
      {!loading && children}
