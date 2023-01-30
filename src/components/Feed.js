@@ -4,16 +4,18 @@ import UploadFile from './UploadFile'
 import { collection, doc, getDocs } from 'firebase/firestore'
 import { getFirestore } from 'firebase/firestore'
 import { database, storage } from '../firebase';
+import Posts from './Posts'
+
 export default function Feed() {
 
   const {user, logout} = useContext(AuthContext)
-  const [currUser, setCurrUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null)
   const db = getFirestore();
   const usersCollection = collection(db, "users")
 
   useEffect(() => {
     const unsub = database.users.doc(user.uid).onSnapshot((snapshot)=>{
-      setCurrUser(snapshot.data())
+      setCurrentUser(snapshot.data())
     })
     return ()=> {unsub();}
   },[user])
@@ -26,8 +28,8 @@ export default function Feed() {
         Logout
       </button>
       </div>
-      {currUser != null && <UploadFile user = {currUser}/>}
-      <h1>{currUser && currUser.user_id && currUser.email}</h1>
+      <UploadFile user = {currentUser}/>
+      <Posts user = {currentUser}/>
     </div>
   )
 }
