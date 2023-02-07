@@ -6,10 +6,24 @@ import { connectStorageEmulator } from 'firebase/storage';
 import './Posts.css'
 import Avatar from '@mui/material/Avatar';
 import Like from './Like'
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import ModalLike from './LikeInComments'
+import AddComments from './AddComments'
+import Comments from './Comments'
 
 export default function Posts({user}) {
   const [posts, setPosts] = useState(null)
-
   useEffect(()=>{
     let posts_arr = []
     const unsub = database.posts.orderBy('created_at', 'desc').onSnapshot((querySnapshot)=>{
@@ -23,6 +37,15 @@ export default function Posts({user}) {
     return unsub
   },[])
 
+  const [open, setOpen] = useState('')
+  const handleClickOpen = (id) => {
+    setOpen(id);
+  };
+
+  const handleClose = () => {
+    setOpen('');
+  };
+
   return (
     <div>
       {
@@ -32,17 +55,54 @@ export default function Posts({user}) {
           {
             posts.map((post, index)=>{
               return(
-               <React.Fragment key = {index}>
-                <div className='videos'>
-                 <Video src = {post.pUrl}/>
-                  <div className='fa' style = {{display: "flex"}}>
-                    <Avatar src={user.profileUrl} />
-                    <h4>{user.fullname}</h4>
+                <React.Fragment key = {index}>
+                  <div className='videos'>
+                  <Video src = {post.pUrl}/>
+                    <div className='fa' style = {{display: "flex"}}>
+                      <Avatar src= {user.profileUrl} />
+                      <h4>{user.fullname}</h4>
+                    </div>
+                    <Like userData = {user} postData = {post}/>
+                    <ChatBubbleIcon className='chat-styling' onClick={()=>handleClickOpen(post.pID)}/>
+                    <Dialog
+                      open={open == post.pID}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                      hideBackdrop = {true}
+                      fullWidth = {true}
+                      maxWidth = 'md'
+                    >
+
+                    <div className='modal-container'>
+                      <div className='video-modal'>
+                        <video autoPlay = {true} muted = "muted" controls>
+                          <source src = {post.pUrl}/>
+                        </video>
+                      </div>
+
+                      <div className='comment-modal'>
+                        <Card variant = "plain" className='allCommentsCard'>
+                          <Comments postData={post} />
+                        </Card>
+                        <Card variant = "plain" className='userCommentsCard' style = {{marginTop: "5%"}}>
+                         <div style = {{display: "flex", marginBottom: "3%"}}>
+                            <ModalLike postData = {post} userData = {user} style = {{display: "flex", justifyContent: "center", alignItems: "center"}}/>
+                            <Typography style = {{marginLeft: "4%"}}>
+                              {post.likes.length === 0 ? '' : `Liked by ${post.likes.length} users`}
+                            </Typography>
+                          </div>
+                          <div style = {{display: "flex"}}>
+                            <AddComments userData={user} postData = {post}/>
+                          </div>
+                        </Card>
+                      </div>
+                    </div>
+                    </Dialog>
                   </div>
-                  <Like userData = {user} postData = {post}/>
-                </div>
-               </React.Fragment>
-            )})
+                </React.Fragment>
+              )
+            })
           }
           </div>
       }

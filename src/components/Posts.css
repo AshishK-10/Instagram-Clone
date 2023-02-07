@@ -29,7 +29,7 @@
 
 .icon-styling{
   position: absolute;
-  bottom: 18%;
+  bottom: 28%;
   right:7%;
   font-size: 2rem;
 }
@@ -42,4 +42,58 @@
 .unlike{
   color: white;
   cursor: pointer;
+}
+
+.unlike-modal{
+  color: grey;
+  cursor: pointer;
+}
+
+.chat-styling{
+  position: absolute;
+  bottom: 20%;
+  right:7%;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-container{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.video-modal{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+}
+
+.comment-modal{
+  min-height: 100%;
+  width: 100%;
+}
+
+.video-modal video{
+  height: 85vh;
+  width: 90%;
+}
+
+.modal-video{
+  height: 100%;
+  width: 100%;
+}
+
+.modal-video video{
+  height: 84vh;
+}
+
+.allCommentsCard{
+  height: 60vh;
+}
+
+.comments-div{
+  margin-top: 6%;
 }
