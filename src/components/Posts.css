@@ -97,3 +97,16 @@
 .comments-div{
   margin-top: 6%;
 }
+
+@media (max-width: 700px) {
+  .video-modal{
+    display: none;
+  }
+  .addToCommentsBtn{
+   margin-left: 0 !important;
+  }
+  .addToCommentsDiv{
+    margin-left: 2%;
+    margin-bottom: 5%;
+  }
+}

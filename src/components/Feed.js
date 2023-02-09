@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { AuthContext } from '../Context/authContext'
 import UploadFile from './UploadFile'
+import Navbar from './Navbar'
 import { collection, doc, getDocs } from 'firebase/firestore'
 import { getFirestore } from 'firebase/firestore'
 import { database, storage } from '../firebase';
@@ -21,15 +22,12 @@ export default function Feed() {
   },[user])
 
   return (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
-      <div style={{width: "50%"}}>
-      <h1>hello this is the feed</h1>
-      <button onClick={logout}>
-        Logout
-      </button>
+    <>
+      {currentUser && <Navbar userData = {currentUser}/>}
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+        <UploadFile user = {currentUser}/>
+        <Posts user = {currentUser}/>
       </div>
-      <UploadFile user = {currentUser}/>
-      <Posts user = {currentUser}/>
-    </div>
+    </>
   )
 }

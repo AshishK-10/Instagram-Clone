@@ -63,7 +63,7 @@ export default function Posts({user}) {
                       <h4>{user.fullname}</h4>
                     </div>
                     <Like userData = {user} postData = {post}/>
-                    <ChatBubbleIcon className='chat-styling' onClick={()=>handleClickOpen(post.pID)}/>
+                    <ChatBubbleIcon style = {{color: "darkgrey"}}className='chat-styling' onClick={()=>handleClickOpen(post.pID)}/>
                     <Dialog
                       open={open == post.pID}
                       onClose={handleClose}

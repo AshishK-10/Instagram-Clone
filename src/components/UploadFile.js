@@ -92,7 +92,7 @@ export default function UploadFile(props) {
   }
 
   return (
-    <div>
+    <div style = {{marginTop: "5rem", marginBottom: "1rem"}}>
       {error !== '' && <Alert severity="error">{error}</Alert>}
       <>
        <input type = "file" accept='video/*' id = "upload-input" style = {{display: "none"}} onChange = {(e)=> {setNewFile(e)}}/>

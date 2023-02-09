@@ -9,12 +9,12 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { CardActionArea } from '@mui/material';
-
 import './Signup.css'
 import instaLogo from '../assets/instagramText.jpg'
 import {Link, useNavigate} from 'react-router-dom'
 import { AuthContext } from '../Context/authContext';
 import { database, storage } from '../firebase';
+
 export default function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
