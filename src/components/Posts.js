@@ -2,21 +2,12 @@ import React, {useState, useEffect} from 'react'
 import {database} from '../firebase'
 import CircularProgress from '@mui/material/CircularProgress';
 import Video from './Video';
-import { connectStorageEmulator } from 'firebase/storage';
 import './Posts.css'
 import Avatar from '@mui/material/Avatar';
 import Like from './Like'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ModalLike from './LikeInComments'
 import AddComments from './AddComments'
@@ -57,7 +48,7 @@ export default function Posts({user}) {
               return(
                 <React.Fragment key = {index}>
                   <div className='videos'>
-                  <Video src = {post.pUrl}/>
+                    <Video src = {post.pUrl}/>
                     <div className='fa' style = {{display: "flex"}}>
                       <Avatar src= {user.profileUrl} />
                       <h4>{user.fullname}</h4>
@@ -65,7 +56,7 @@ export default function Posts({user}) {
                     <Like userData = {user} postData = {post}/>
                     <ChatBubbleIcon style = {{color: "darkgrey"}}className='chat-styling' onClick={()=>handleClickOpen(post.pID)}/>
                     <Dialog
-                      open={open == post.pID}
+                      open={open === post.pID}
                       onClose={handleClose}
                       aria-labelledby="alert-dialog-title"
                       aria-describedby="alert-dialog-description"
@@ -76,8 +67,8 @@ export default function Posts({user}) {
 
                     <div className='modal-container'>
                       <div className='video-modal'>
-                        <video autoPlay = {true} muted = "muted" controls>
-                          <source src = {post.pUrl}/>
+                        <video autoPlay = {true} muted = "muted" controls style={{background: "black"}}>
+                          <source src = {post.pUrl} style = {{objectFit: "cover"}}/>
                         </video>
                       </div>
 
@@ -104,7 +95,7 @@ export default function Posts({user}) {
               )
             })
           }
-          </div>
+        </div>
       }
     </div>
   )

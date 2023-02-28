@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { database } from '../firebase';
-import { ContentPasteSearch } from '@mui/icons-material';
 
 function LikeInComments({userData, postData}) {
   const [like, setLike] = useState(null)

@@ -13,6 +13,8 @@
 
 .videos{
   position: relative;
+  object-fit: cover;
+  background-color: black;
 }
 .fa{
   position: absolute;
@@ -109,4 +111,8 @@
     margin-left: 2%;
     margin-bottom: 5%;
   }
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
 }

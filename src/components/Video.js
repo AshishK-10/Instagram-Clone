@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Video.css'
 import  ReactDOM  from 'react-dom';
 export default function Video(props) {
@@ -16,6 +16,7 @@ export default function Video(props) {
     }
   }
   return (
-    <video src = {props.src} className = "video-styling" muted = "muted" onClick={handleClick} onEnded = {handleScroll} controls/>
+    <video src = {props.src} className = "video-styling" muted = "muted" onClick={handleClick} onEnded = {handleScroll} controls controlsList='noplaybackrate nodownload nofullscreen'  disablePictureInPicture  onMouseOver={event => event.target.play()}
+    onMouseOut={event => event.target.pause()}/>
   )
 }

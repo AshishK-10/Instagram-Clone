@@ -1,0 +1,89 @@
+.spacer{
+  margin-top: 1%;
+  min-height: 10vh;
+}
+.container{
+  min-height: 88vh;
+  margin-left: 18%;
+  margin-right: 18%;
+}
+
+.upper-part{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img{
+  flex-basis: 50%;
+  margin-left: 10%;
+}
+
+.info{
+  flex-basis: 50%;
+}
+
+.profile-img img{
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+}
+
+.profile-videos{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  overflow: scroll;
+  cursor: pointer;
+  height: 50vh;
+}
+
+
+.videos{
+  background-color: black;
+}
+
+.profile-videos video{
+  object-fit: cover;
+  height: 40vh;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+
+.likeInProfile{
+  position: absolute;
+  bottom: 42%;
+  right:7%;
+  font-size: 2rem;
+}
+
+.profile-chat-styling{
+  position: absolute;
+  bottom: 30% !important;
+  right:7%;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-reels{
+  overflow: scroll;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  display: none;
+  width: 12px;
+}
+
+
+*::-webkit-scrollbar-thumb {
+  background-color: blue;
+}
